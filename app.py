@@ -84,16 +84,16 @@
 
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
 
-        // ------------------------------------------------------------
-        // REPLACE THE TEXT INSIDE THE QUOTES WITH YOUR GEMINI KEY:
+        
+        
         const EMBEDDED_API_KEY =""
-        // ------------------------------------------------------------
+        
 
         let extractedText = "";
         const dropzone = document.getElementById('dropzone');
         const fileInput = document.getElementById('resumeFile');
 
-        // Centralized parsing pipeline logic
+       
         async function processFile(file) {
             if (!file || file.type !== "application/pdf") {
                 alert("Please upload a valid PDF file.");
@@ -124,12 +124,12 @@
             }
         }
 
-        // Native Click-to-Select input interaction attachment layer
+        
         fileInput.addEventListener('change', async (e) => {
             await processFile(e.target.files[0]);
         });
 
-        // Explicit Drag-And-Drop override configuration hooks
+        
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
             dropzone.addEventListener(eventName, (e) => {
                 e.preventDefault();
@@ -158,7 +158,7 @@
             }
         });
 
-        // Core Workflow Engine Trigger Integration
+        
         document.getElementById('analyzeBtn').addEventListener('click', async () => {
             const jobDesc = document.getElementById('jobDesc').value.trim();
 
@@ -209,15 +209,15 @@
 
                 const data = JSON.parse(rawJson.trim());
 
-                // Inject score metrics configurations dynamic text
+               
                 document.getElementById('scoreText').innerText = `${data.match_score || 0}%`;
                 
-                // Dynamic Visual Color UI State distribution assignments
+                
                 if(data.match_score >= 80) document.getElementById('scoreText').className = "text-5xl md:text-6xl font-black text-emerald-400";
                 else if(data.match_score >= 50) document.getElementById('scoreText').className = "text-5xl md:text-6xl font-black text-amber-400";
                 else document.getElementById('scoreText').className = "text-5xl md:text-6xl font-black text-rose-500";
 
-                // Map missing keyword badge arrays
+               
                 const keywordsContainer = document.getElementById('keywordsList');
                 keywordsContainer.innerHTML = '';
                 if(data.missing_keywords && data.missing_keywords.length > 0) {
@@ -231,10 +231,10 @@
                     keywordsContainer.innerHTML = '<span class="text-emerald-400 text-sm font-medium">No missing keywords found! Look solid.</span>';
                 }
 
-                // Render structure overview texts
+                
                 document.getElementById('formattingFeedback').innerText = data.formatting_feedback || "No systematic layout errors captured.";
 
-                // Generate Rewrites components loop list mapping
+                
                 const rewritesContainer = document.getElementById('rewritesList');
                 rewritesContainer.innerHTML = '';
                 if(data.bullet_point_improvements && data.bullet_point_improvements.length > 0) {
@@ -251,7 +251,7 @@
                     rewritesContainer.innerHTML = '<p class="text-emerald-400 text-sm">Bullet structures are completely optimized with standard impact metrics.</p>';
                 }
 
-                // Make dashboard area visible
+                
                 document.getElementById('dashboard').classList.remove('hidden');
 
             } catch (error) {
